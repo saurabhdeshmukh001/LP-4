@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Bank {
+    // State variable to store the balance of the account
+    uint private balance;
+
+    // Constructor to initialize the balance to zero
+    constructor() {
+        balance = 0;
+    }
+
+    // Function to deposit money to the bank account
+    function deposit(uint amount) public {
+        require(amount > 0, "Deposit amount must be greater than zero");
+        balance += amount;
+    }
+
+    // Function to withdraw money from the bank account
+    function withdraw(uint amount) public {
+        require(amount > 0, "Withdraw amount must be greater than zero");
+        require(amount <= balance, "Insufficient balance");
+
+        balance -= amount;
+    }
+
+    // Function to get the current balance of the account
+    function getBalance() public view returns (uint) {
+        return balance;
+    }
+}
